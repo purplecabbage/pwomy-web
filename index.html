@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Da pwomy web</title>
+        <style>
+            body {
+                background-color: #120b3e;
+                color: #ffffff; 
+                margin: 0;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+            .title {
+                font-size: 24px;
+            }
+            .sub-title {
+                font-family:Arial, Helvetica, sans-serif;
+                color: #ffffe4;
+            }
+            header {
+                background-color: #3322ac;
+                padding: 20px;
+                display: flex;
+                justify-content: space-between;
+            }
+            .sub-header {
+                padding: 0 20px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .main-content {
+                width: 100%;
+                padding: 20px;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+            }
+            img {
+                height: 800px;
+                border: #FFF 1px solid;
+                margin: 10px 10px;
+            }
+            input[type="button"] {
+                background-color: #000;
+                color: #ffffff;
+                border: #ffffff 1px solid;
+                padding: 10px;
+                font-size: 16px;
+                width:48px
+                cursor: pointer;
+            }
+        </style>
+        <script>
+            let currentImage = 1;
+
+            function next() {
+                currentImage++;
+                if(currentImage > 23) {
+                    currentImage = 1;
+                }
+                loadImage()
+            }
+            function previous() {
+                currentImage--;
+                if(currentImage < 1) {
+                    currentImage = 1;
+                }
+                loadImage()
+            }
+            function loadImage() {
+                let currentImageName = currentImage > 9 ? currentImage : "0" + currentImage;
+                document.getElementById("pwomyFrame").src = "images/" + currentImageName + ".jpg";
+                let pageNum = currentImage - 1;
+                document.getElementById("pageNum").innerHTML = pageNum === 0 ? "" : "Page " + pageNum + " of 23";
+            }
+            document.addEventListener('DOMContentLoaded', loadImage);
+        </script>
+
+    </head>
+    <body>
+        <header>
+            <span class="title">Da Pwomy Web</span>
+            
+        </header>
+        
+        <div class="sub-header">
+            <p>Soc presents ... </p>
+            <span class="sub-title">The epic adventures of Pwomy!</span>
+            <div id="pageNum"></div>
+        </div>
+        
+        <div class="main-content">
+            <input type="button" value="<< Previous" onclick="previous()">
+            <img id="pwomyFrame" alt="Pwomy">
+            <input type="button" value="Next >>" onclick="next()">
+        </div>
+        
+
+    </body>
+
+</html>
